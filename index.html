@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JS Playground - Cyberpunk Terminal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@800&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffdf93",
+                    "inverse-on-surface": "#f5eff7",
+                    "secondary-fixed": "#e9ddff",
+                    "on-primary-fixed": "#22005d",
+                    "primary-fixed-dim": "#cfbcff",
+                    "primary-fixed": "#e9ddff",
+                    "surface-container": "#f2ecf4",
+                    "outline": "#7a7582",
+                    "tertiary-fixed-dim": "#e7c365",
+                    "surface-container-high": "#ece6ee",
+                    "secondary": "#63597c",
+                    "surface": "#fdf7ff",
+                    "surface-bright": "#fdf7ff",
+                    "surface-variant": "#e6e0e9",
+                    "tertiary-container": "#c9a74d",
+                    "on-tertiary-container": "#503d00",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#e0d2ff",
+                    "background": "#000b18",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#cbc4d2",
+                    "on-surface": "#00f2ff",
+                    "surface-container-highest": "#e6e0e9",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#4b4263",
+                    "inverse-surface": "#322f35",
+                    "on-tertiary-fixed-variant": "#594400",
+                    "surface-tint": "#6750a4",
+                    "secondary-fixed-dim": "#cdc0e9",
+                    "primary": "#00f2ff",
+                    "secondary-container": "#e1d4fd",
+                    "surface-dim": "#ded8e0",
+                    "on-primary-fixed-variant": "#4f378a",
+                    "primary-container": "#001a33",
+                    "surface-container-low": "#f8f2fa",
+                    "on-tertiary-fixed": "#241a00",
+                    "error": "#ba1a1a",
+                    "tertiary": "#765b00",
+                    "on-secondary-container": "#645a7d",
+                    "on-background": "#00f2ff",
+                    "on-secondary-fixed": "#1f1635",
+                    "inverse-primary": "#cfbcff",
+                    "on-surface-variant": "#00f2ff"
+                },
+                "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+                },
+                "spacing": {
+                    "toolbar-height": "48px",
+                    "panel-gap": "0px",
+                    "container-padding": "1.5rem",
+                    "header-height": "64px",
+                    "element-gap": "0.75rem"
+                },
+                "fontFamily": {
+                    "display-bold": ["Hanken Grotesk"],
+                    "tab-label": ["Inter"],
+                    "code-sm": ["JetBrains Mono"],
+                    "tagline": ["Inter"],
+                    "label-caps": ["Inter"]
+                },
+                "fontSize": {
+                    "display-bold": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                    "tab-label": ["13px", { "lineHeight": "16px", "fontWeight": "600" }],
+                    "code-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                    "tagline": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                    "label-caps": ["12px", { "letterSpacing": "0.05em", "fontWeight": "700" }]
+                }
+            }
+        }
+    }
+</script>
+<style>
+    body {
+        background: linear-gradient(to bottom, #000b18, #001a33);
+        color: #00f2ff;
+    }
+    .cyber-border {
+        border: 1px solid #00f2ff;
+        box-shadow: 0 0 10px rgba(0, 242, 255, 0.2), inset 0 0 10px rgba(0, 242, 255, 0.1);
+    }
+    .cyber-glow-bottom {
+        box-shadow: 0 4px 10px -2px rgba(0, 242, 255, 0.5);
+        border-bottom: 2px solid #00f2ff;
+    }
+    .cyber-btn {
+        border: 1px solid #00f2ff;
+        background: transparent;
+        color: #00f2ff;
+        box-shadow: inset 0 0 5px #00f2ff;
+        transition: all 0.2s;
+    }
+    .cyber-btn:hover {
+        background: rgba(0, 242, 255, 0.1);
+        box-shadow: inset 0 0 15px #00f2ff, 0 0 10px rgba(0, 242, 255, 0.3);
+    }
+    @media (max-width: 767px) {
+        main::-webkit-scrollbar { width: 6px; }
+        main::-webkit-scrollbar-thumb { background: rgba(0,242,255,0.4); border-radius: 4px; }
+    }
+</style>
+</head>
+<body class="h-screen w-full overflow-hidden flex flex-col font-code-sm">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full h-14 sm:h-16 flex justify-between items-center px-3 sm:px-6 lg:px-8 z-50 bg-background/80 backdrop-blur-sm border-b border-primary cyber-border">
+<div class="flex items-center gap-2 sm:gap-4 min-w-0">
+<span class="material-symbols-outlined text-primary text-2xl sm:text-3xl shrink-0" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<div class="min-w-0">
+<h1 class="font-display-bold text-base sm:text-display-bold text-primary m-0 p-0 leading-none truncate">JS Playground</h1>
+<span class="hidden sm:inline font-tagline text-tagline text-primary/70">Source Code</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 sm:gap-4 shrink-0">
+<button class="cyber-btn px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg font-tab-label text-tab-label flex items-center gap-1 sm:gap-2">
+<span class="material-symbols-outlined text-sm">open_in_full</span>
+<span class="hidden sm:inline">JS · Web</span>
+</button>
+<button class="cyber-btn p-1.5 sm:p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-lg sm:text-xl">dark_mode</span>
+</button>
+<button class="cyber-btn p-1.5 sm:p-2 rounded-full hidden sm:flex items-center justify-center">
+<span class="material-symbols-outlined text-lg sm:text-xl">code</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 mt-14 sm:mt-16 flex flex-col lg:flex-row p-2 sm:p-4 gap-3 sm:gap-4 overflow-y-auto lg:overflow-hidden lg:h-[calc(100vh-64px)]">
+<!-- Left Panel: Editor -->
+<section class="flex flex-col cyber-border rounded-xl bg-primary-container/30 overflow-hidden relative min-h-[55vh] lg:min-h-0 lg:h-full lg:flex-1">
+<!-- Tabs -->
+<div class="flex border-b border-primary/30 bg-background/50 overflow-x-auto">
+<button class="flex-1 py-2.5 sm:py-3 px-2 sm:px-4 font-tab-label text-xs sm:text-tab-label text-primary hover:bg-primary/10 transition-colors flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">html</span>
+                HTML
+            </button>
+<button class="flex-1 py-2.5 sm:py-3 px-2 sm:px-4 font-tab-label text-xs sm:text-tab-label text-primary hover:bg-primary/10 transition-colors flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">css</span>
+                CSS
+            </button>
+<button class="flex-1 py-2.5 sm:py-3 px-2 sm:px-4 font-tab-label text-xs sm:text-tab-label text-primary cyber-glow-bottom bg-primary/10 flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">javascript</span>
+                JS
+            </button>
+</div>
+<!-- Toolbar -->
+<div class="flex justify-end items-center p-1.5 sm:p-2 border-b border-primary/20 bg-background/30 gap-1.5 sm:gap-2">
+<button class="text-primary/70 hover:text-primary p-1 rounded transition-colors" title="Download">
+<span class="material-symbols-outlined text-sm">download</span>
+</button>
+<button class="text-primary/70 hover:text-primary p-1 rounded transition-colors" title="Reset">
+<span class="material-symbols-outlined text-sm">restart_alt</span>
+</button>
+<button class="cyber-btn px-2.5 sm:px-3 py-1 rounded text-xs flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                Play
+            </button>
+</div>
+<!-- Editor Area -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Line Numbers -->
+<div class="w-7 sm:w-10 lg:w-12 border-r border-primary/20 bg-background/40 flex flex-col items-end pr-1.5 sm:pr-2 py-3 sm:py-4 text-primary/40 font-code-sm text-xs sm:text-code-sm select-none">
+<span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+</div>
+<!-- Code Input -->
+<div class="flex-1 p-2.5 sm:p-4 bg-transparent outline-none resize-none font-code-sm text-xs sm:text-code-sm text-primary overflow-auto" contenteditable="true" spellcheck="false">
+<pre class="whitespace-pre-wrap sm:whitespace-pre"><code class="language-javascript">const init = () =&gt; {
+  console.log("Terminal Online...");
+  startSequence();
+};
+
+init();</code></pre>
+</div>
+</div>
+</section>
+<!-- Right Panel: Output/Console -->
+<section class="flex flex-col cyber-border rounded-xl bg-primary-container/30 overflow-hidden min-h-[35vh] lg:min-h-0 lg:h-full lg:flex-1">
+<!-- Tabs -->
+<div class="flex border-b border-primary/30 bg-background/50">
+<button class="flex-1 py-2.5 sm:py-3 px-2 sm:px-4 font-tab-label text-xs sm:text-tab-label text-primary hover:bg-primary/10 transition-colors flex items-center justify-center gap-1 sm:gap-2">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                Output
+            </button>
+<button class="flex-1 py-2.5 sm:py-3 px-2 sm:px-4 font-tab-label text-xs sm:text-tab-label text-primary cyber-glow-bottom bg-primary/10 flex items-center justify-center gap-1 sm:gap-2">
+<span class="material-symbols-outlined text-sm">terminal</span>
+                Console
+            </button>
+</div>
+<!-- Output/Console Area -->
+<div class="flex-1 p-2.5 sm:p-4 overflow-auto flex flex-col">
+<div class="flex justify-end mb-2">
+<button class="text-primary/70 hover:text-primary text-xs font-tagline underline decoration-primary/50 underline-offset-4 transition-colors">Clear console</button>
+</div>
+<div class="flex-1 font-code-sm text-xs sm:text-code-sm">
+<div class="text-primary/80 mb-1 break-words"><span class="text-primary font-bold mr-2">&gt;</span>Terminal Online...</div>
+<div class="flex items-center text-primary mt-2">
+<span class="text-primary font-bold mr-2">&gt;</span>
+<span class="animate-pulse">_</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
