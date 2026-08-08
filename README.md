@@ -1,39 +1,37 @@
-# JS Playground - Cyberpunk Terminal
+# CodeForge — Browser IDE
 
-A futuristic, cyberpunk-inspired JavaScript playground UI built with Tailwind CSS and minimal HTML. The interface presents an editor-style experience with code tabs, terminal output, and neon styling.
+A browser-based VS Code-style IDE with a Monaco editor, live preview, terminal output, and command palette.
 
 ## Features
 
-- Dark terminal-inspired dashboard with glassy neon borders
-- Editor panel with HTML/CSS/JS tab UI
-- Console output panel with live terminal prompt styling
-- Toolbar actions for play, reset, and download buttons
-- Custom code editor look and feel using `contenteditable`
-- Responsive layout for desktop and mobile screens
+- Browser IDE interface inspired by Visual Studio Code
+- Monaco code editor for rich editing experience
+- Live preview panel for running code
+- Terminal/console output support
+- Command palette and keyboard shortcuts
+- Static app shell that runs from `index.html`
 
 ## Built With
 
 - HTML5
-- Tailwind CSS via CDN
-- Google Fonts: Material Symbols Outlined, Hanken Grotesk, Inter, JetBrains Mono
+- JavaScript
+- Monaco Editor
+- Compiled CSS bundle
+- Google Fonts
 
 ## Project Structure
 
-- `index.html` — main app markup and styling
+- `index.html` — app shell, metadata, and entry point
+- `assets/index-BaZCncTC.js` — application JavaScript bundle
+- `assets/index-C2XuARqE.css` — application stylesheet bundle
 - `README.md` — project documentation
 
 ## Usage
 
-1. Open `index.html` in your browser.
-2. Interact with the code editor panel.
-3. Use the `Play` button and dashboard controls for the terminal-style experience.
-
-## Customization
-
-- Modify the Tailwind config in the inline `<script id="tailwind-config">` block to adjust theme colors, fonts, and spacing.
-- Update the `contenteditable` editor area to change the sample JavaScript code.
-- Tweak CSS classes such as `.cyber-border`, `.cyber-glow-bottom`, and `.cyber-btn` for custom visual effects.
+1. Open `index.html` in your browser, or serve the folder with a local static server.
+2. Use the editor and file explorer to open or edit files.
+3. Use the Run/Play button or command palette to preview code.
 
 ## Notes
 
-This project is a static demo page for showcasing a cyberpunk terminal UI and is intended for frontend styling and layout experimentation.
+This repository contains a built browser IDE app. The source is bundled into the static `index.html` and `assets/` files.
